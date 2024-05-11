@@ -18,7 +18,7 @@ struct Film {
 
 string rekomendowanyFilm;
 Film prUz;
-// Algorytm adaptacyjny - próg podobieństwa
+// Algorytm adaptacyjny - prog podobieństwa
     double prog;
 
 int liczbaZmniejszen;
@@ -1133,7 +1133,7 @@ vector<string> rekomendowaneFilmy(const vector<Film>& daneFilmow, const Film& pr
     // Normalizacja podobienstwa
     podobienstwo /= sumaWagi;
 
-    // Sprawdzanie, czy film spelnia prĂłg podobienstwa
+    // Sprawdzanie, czy film spelnia prog podobienstwa
     if (podobienstwo >= prog) {
     zarekomendowaneFilmy.push_back(Film.tytul);
     poleconyFilm=true;
@@ -1178,6 +1178,20 @@ void zapisIWyjscie(){
     }
     else{ cout << "Blad otwarcia pliku, sproboj ponownie";
     }
+}
+
+void resetWag(){
+    fw.open("wagi.txt", ios::out);
+    if (fw.is_open()){
+        fw << "1.5" << "\n";
+        fw << "1.5" << "\n";
+        fw << "1.5" << "\n";
+        fw << "1.5" << "\n";
+        fw << "1.5" << "\n";
+        fw << "1.5" << "\n";
+        fw.close();
+    }
+    cout<<"Wagi zostaly zresetowane\n";
 }
 
 int main() {
@@ -1272,6 +1286,7 @@ int main() {
         cout <<"2. Reset puli pytan\n";
         cout <<"3. Wyswietlenie wartosci wag uzytkownika\n";
         cout <<"4. Wyjscie i zapis wag uzytkownika\n";
+        cout <<"5. Resetowanie wag do ustawien poczatkowych\n";
         cout <<"Opcja: ";
         cin>>menu;
         switch(menu){
@@ -1303,6 +1318,10 @@ int main() {
              }
              case 4:{
                 zapisIWyjscie();
+                break;
+             }
+             case 5:{
+                resetWag();
                 break;
              }
              default: {
